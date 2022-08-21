@@ -8,8 +8,8 @@ class Tension (enum.Enum):
     high = 150000
 
 class ReseauAmont(Component):
-    def __init__(self, resistance, impedance, reactance, tension_alimentation, scc):
-        Component.__init__(self, resistance, impedance, reactance, tension_alimentation)
+    def __init__(self, supply_voltage, scc):
+        Component.__init__(self, supply_voltage)
         self.scc = {"valeur": scc[0], "unite" : scc[1]}
     
     def get_impedance(self):

@@ -9,8 +9,8 @@ class Tension (enum.Enum):
 
 class MachineTounante(Component):
 
-    def __init__(self, resistance, impedance, reactance, tension_alimentation, sn, x):
-        Component.__init__(self, resistance, impedance, reactance, tension_alimentation)
+    def __init__(self, supply_voltage, sn, x):
+        Component.__init__(self, supply_voltage)
         self.icc = 0
         self.x = x
         self.sn = {"valeur" :sn[0], "unite" :sn[1]}

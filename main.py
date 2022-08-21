@@ -1,23 +1,23 @@
-import math as M
-import reseau_amont
-import transformateur
-import liaison
-import machine_tournante
+import math
+from circuit import Circuit
+from circuit_breaker import CircuitBreaker
+from liaison import Liaison
+from reseau_amont import ReseauAmont
+from transformateur import Transformateur
 
-reseau = reseau_amont.ReseauAmont(0, 0, 0, [20000, 'V'], [(500 * M.pow(10, 6)), 'VA'])
-transfo = transformateur.Transformateur(0, 0, 0, [410, 'V'], 15, [1000, 'VA'], 0)
-
-liaisons = liaison.Liaison(0, 'cuivre', 0, 50, [False, ''], [True, 'htb'], 2000) 
-machine = machine_tournante.MachineTounante(0, 0, 0, [20000, 'V'], [M.pow(10, 6), 'VA'], 15)
+c1 = Circuit(20000)
 
 
-#print(reseau.get_impedance() * 0.2)
+reseau_amont = ReseauAmont([20000, 'V'], [500 * math.pow(10, 6), 'VA'])
+liaison = Liaison('cuivre', 50, 2000, 'htb')
+circuit_breaker = CircuitBreaker()
+# transfo = Transformateur([400, 'V'], 15, [1000, 'KVA'], 3600)
+# transfo2 = Transformateur([403, 'V'], 15, [1000, 'KVA'], 3600)
 
-somme_des_reactances = reseau.get_reactance() + liaisons.get_reactance()
-somme_des_resistances = reseau.get_resistance() + liaisons.get_resistance()
-##
-zcc = M.sqrt(M.pow(somme_des_resistances, 2) + M.pow(somme_des_reactances, 2))
-icc = reseau.tension['valeur'] / (M.sqrt(3) * zcc)
-#
-print("icc=" ,icc)
-print("zcc=" ,zcc)
+c1.add_component(reseau_amont, True)
+c1.add_component(liaison, True)
+c1.add_component(circuit_breaker, True)
+
+# print(c1.get_equivalent_impedance())
+# print(c1.get_icc())
+

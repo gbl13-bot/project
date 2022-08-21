@@ -8,8 +8,8 @@ class Tension (enum.Enum):
     high = 150
 
 class Transformateur(Component):
-    def __init__(self, resistance, impedance, reactance, tension_alimentation, ucc, sn, perte_joule):
-        Component.__init__(self, resistance, impedance, reactance, tension_alimentation)
+    def __init__(self, supply_voltage, ucc, sn, perte_joule):
+        Component.__init__(self, supply_voltage)
         self.ucc = ucc
         self.perte_joule = perte_joule
         self.sn = {"valeur" :sn[0], "unite" :sn[1]}

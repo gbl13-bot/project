@@ -1,3 +1,4 @@
 * TODO AJOUTER L'UNITE
 * TODO calcul icc
 * TODO add default value to resistance and reactance
+* NEXT add functionality that reconize the iic point
