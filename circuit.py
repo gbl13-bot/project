@@ -4,7 +4,7 @@ from component import Component
 class Circuit():
 
     def __init__(self, supply_voltage: float, name: str = "undefined"):
-        self.tension = supply_voltage
+        self.supply_voltage = supply_voltage
         self.name = name
         self.is_icc_point = False
         self.component_list: list[Component] = []
@@ -54,7 +54,7 @@ class Circuit():
     def add_sub_circuit(self):
         for component in self.component_list:
             if component.is_default_point or self.is_icc_point:
-                self.sub_circuits.append(Circuit(self.tension))
+                self.sub_circuits.append(Circuit(self.supply_voltage))
                 self.sub_circuits[-1].add_components(self.component_list)
                 self.initialize_circuit()
                 
@@ -63,7 +63,7 @@ class Circuit():
         self.equivalent_impedance = math.sqrt(math.pow(self.resistances_sum, 2) + math.pow(self.reactances_sum, 2))
 
     def calcul_icc(self):
-       self.icc = self.tension / (math.sqrt(3) * self.get_equivalent_impedance())
+       self.icc = self.supply_voltage / (math.sqrt(3) * self.get_equivalent_impedance())
 
     def get_icc(self):
         self.calcul_icc()

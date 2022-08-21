@@ -26,7 +26,7 @@ class LineDeDistrib(enum.Enum):
 
 class Liaison():
 
-    def __init__(self, resistivite, section_des_conduc, longeur, reactance_mode=""):
+    def __init__(self, resistivite: str, section_des_conduc: int, longeur: int, reactance_mode: str =""):
         self.resistance = 0
         self.reactance = 0
         self.is_default_point = False

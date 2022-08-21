@@ -8,7 +8,7 @@ class Tension (enum.Enum):
     high = 150
 
 class Transformateur(Component):
-    def __init__(self, supply_voltage, ucc, sn, perte_joule):
+    def __init__(self, supply_voltage, ucc, sn, perte_joule=0):
         Component.__init__(self, supply_voltage)
         self.ucc = ucc
         self.perte_joule = perte_joule
@@ -16,16 +16,16 @@ class Transformateur(Component):
 
     
     def intensite_nominal(self):
-        return self.sn['valeur'] / (self.tension['valeur'] * M.sqrt(3))
+        return self.sn['valeur'] / (self.supply_voltage['valeur'] * M.sqrt(3))
 
     def get_impedance(self):
-        return (self.ucc / 100) * (M.pow(self.tension['valeur'], 2) / self.sn['valeur'])
+        return (self.ucc / 100) * (M.pow(self.supply_voltage['valeur'], 2) / self.sn['valeur'])
     
     def get_resistance(self):
         print()
-        if self.tension['valeur'] == int(Tension.low.value):
+        if self.supply_voltage['valeur'] == int(Tension.low.value):
             self.resistance = self.get_impedance() * 0.3
-        elif self.tension['valeur'] == int(Tension.middle.value):
+        elif self.supply_voltage['valeur'] == int(Tension.middle.value):
             self.resistance = self.get_impedance() * 0.2
         elif self.perte_joule != 0:
             self.resistance = self.perte_joule / (3* self.intensite_nominal())

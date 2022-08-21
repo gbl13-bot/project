@@ -6,7 +6,7 @@ class Component :
         self.is_default_point: bool = False
         self.reactance: float = 0
         self.impedance: float = 0
-        self.tension: dict = {"valeur": supply_voltage[0], "unite": supply_voltage[1]}
+        self.supply_voltage: dict = {"valeur": supply_voltage[0], "unite": supply_voltage[1]}
         self.id: int = self._set_id()
 
     def _set_id(self):
