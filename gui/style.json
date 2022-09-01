@@ -1,0 +1,22 @@
+{
+    "ShowLogs": true,
+    "QMainWindow": [
+        {
+            "tittle": "CCC"
+        }
+    ],
+    "QSettings": [
+        {
+            "ThemeSettings": [
+                {
+                    "CustomTheme": []
+                }
+            ],
+            "AppSettings": {
+                "OrginizationName": "CCC",
+                "ApplicationName": "CCC Company",
+                "OrginizationDormain": "CCC.org"
+            }
+        }
+    ]
+}
